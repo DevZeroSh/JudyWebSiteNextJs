@@ -1,5 +1,5 @@
 "use client";
-import ContactForm from "@/components/ContactForm";
+import ContactForm from "../contact/contactForm";
 import Layout from "@/components/layout/Layout";
 import Companies from "@/components/sections/home1/Companies";
 import { useTranslations } from "next-intl";

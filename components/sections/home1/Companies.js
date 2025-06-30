@@ -28,7 +28,7 @@ export default function Companies() {
           </div>
           <div className="services-grid">
             {data.data.slice(0, 6).map((company) => (
-              <div key={company._id} className="service-block-one block-one">
+              <div key={company._id} className="service-block-one block-one max-h-30">
                 <div className="inner-box">
                   <div className="icon-box">
                     <div className="icon">
