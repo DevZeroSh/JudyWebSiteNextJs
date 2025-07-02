@@ -2,7 +2,9 @@
 import Layout from "@/components/layout/Layout";
 import { useTranslations } from "next-intl";
 import Chooseus from "@/components/sections/home3/Services";
-import ContactForm from "../../contact/contactForm";
+import About from "@/components/sections/home3/About";
+import Funfact from "@/components/sections/home3/Funfact";
+import Cta from "@/components/sections/home3/Cta";
 
 export default function Home() {
   const t = useTranslations();
@@ -14,9 +16,10 @@ export default function Home() {
         image={"/assets/images/sevice-1.webp"}
       >
         <div>
+          <About />
           <Chooseus />
-
-          <ContactForm />
+          <Funfact />
+          <Cta />
         </div>
       </Layout>
     </>

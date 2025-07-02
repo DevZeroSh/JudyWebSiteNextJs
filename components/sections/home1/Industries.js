@@ -30,7 +30,7 @@ export default function Industries() {
                   <div className="content-box">
                     <div className="sec-title light">
                       <span className="sub-title">invest</span>
-                      <h2>Investment steps</h2>
+                      <h2>Investment Sectors</h2>
                     </div>
                     <div className="tab-btns tab-buttons clearfix">
                       <div
@@ -40,7 +40,7 @@ export default function Industries() {
                         onClick={() => handleTabChange("tab-1")}
                       >
                         <span className="count-text">01</span>
-                        <h3>Open a bank account</h3>
+                        <h3>Entrepreneurship Sector</h3>
                         <Link href="/">
                           <i className="flaticon-diagonal-arrow"></i>
                         </Link>
@@ -52,7 +52,7 @@ export default function Industries() {
                         onClick={() => handleTabChange("tab-2")}
                       >
                         <span className="count-text">02</span>
-                        <h3>Choose the fund</h3>
+                        <h3>Technology Sector</h3>
                         <Link href="/">
                           <i className="flaticon-diagonal-arrow"></i>
                         </Link>
@@ -64,7 +64,7 @@ export default function Industries() {
                         onClick={() => handleTabChange("tab-3")}
                       >
                         <span className="count-text">03</span>
-                        <h3>Signing an agreement</h3>
+                        <h3>Food Industries Sector</h3>
                         <Link href="/">
                           <i className="flaticon-diagonal-arrow"></i>
                         </Link>
@@ -76,12 +76,12 @@ export default function Industries() {
                         onClick={() => handleTabChange("tab-4")}
                       >
                         <span className="count-text">04</span>
-                        <h3>Registration of classes</h3>
+                        <h3>Automotive Sector</h3>
                         <Link href="/">
                           <i className="flaticon-diagonal-arrow"></i>
                         </Link>
                       </div>
-                      <div
+                      {/* <div
                         className={`tab-btn ${
                           activeTab === "tab-5" ? "active-btn" : ""
                         }`}
@@ -92,7 +92,7 @@ export default function Industries() {
                         <Link href="/">
                           <i className="flaticon-diagonal-arrow"></i>
                         </Link>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -107,11 +107,12 @@ export default function Industries() {
                       id="tab-1"
                     >
                       <div className="inner-box">
-                        <h3>Open a bank account</h3>
+                        <h3>Entrepreneurship Sector</h3>
                         <p>
-                          Open a bank account in one of the banks that has a
-                          certificate of protection and preservation for
-                          investments, such as Danish Bank or Isbank.
+                          Entrepreneurship Sector” is the formal term used to
+                          describe the ecosystem that fosters innovation,
+                          startup development, and entrepreneurial activity
+                          within an economy.
                         </p>
                       </div>
                     </div>
@@ -122,8 +123,14 @@ export default function Industries() {
                       id="tab-2"
                     >
                       <div className="inner-box">
-                        <h3>Choose the fund</h3>
-                        <p>Choosing the fund to invest in</p>
+                        <h3>Technology Sector</h3>
+                        <p>
+                          Technology Sector” refers to the industry segment
+                          focused on innovation in computing, digital
+                          infrastructure, and electronic systems, covering
+                          companies that develop products or services in IT,
+                          software, AI, and tech-based solutions.
+                        </p>
                       </div>
                     </div>
                     <div
@@ -133,10 +140,13 @@ export default function Industries() {
                       id="tab-3"
                     >
                       <div className="inner-box">
-                        <h3>Signing an agreement</h3>
+                        <h3>Food Industries Sector</h3>
                         <p>
-                          Signing an investment management agreement with the
-                          company or bank responsible for the fund.
+                          Food Industries Sector” refers to the industry
+                          involved in the manufacturing, processing, packaging,
+                          and distribution of food and beverage products,
+                          transforming raw agricultural materials into
+                          consumable goods on an industrial scale.
                         </p>
                       </div>
                     </div>
@@ -147,18 +157,17 @@ export default function Industries() {
                       id="tab-4"
                     >
                       <div className="inner-box">
-                        <h3>Registration of classes</h3>
+                        <h3>Automotive Sector</h3>
                         <p>
-                          Shares are registered in the central registry of the
-                          Istanbul Stock Exchange (Share Registry), and
-                          investors can track their investments through their
-                          bank’s application or through the Central Share
-                          Registry.
+                          Automotive Sector” refers to the industry involved in
+                          the design, development, manufacturing, marketing, and
+                          sale of motor vehicles, including cars, trucks, and
+                          buses, as well as parts suppliers and related
+                          services.
                         </p>
-                      
                       </div>
                     </div>
-                    <div
+                    {/* <div
                       className={`tab ${
                         activeTab === "tab-5" ? "active-tab" : ""
                       }`}
@@ -167,11 +176,11 @@ export default function Industries() {
                       <div className="inner-box">
                         <h3>Profit distribution</h3>
                         <p>
-                         Profit distribution is made annually to the investor's bank account.
+                          Profit distribution is made annually to the investor's
+                          bank account.
                         </p>
-                       
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import TestimonialSlider02 from '@/components/slider/TestimonialSlider02'
+import TestimonialSlider02 from "@/components/slider/TestimonialSlider02";
 import { useTranslations } from "next-intl";
 
 export default function Countries() {
@@ -7,7 +7,7 @@ export default function Countries() {
   return (
     <>
       {/* service-style-three */}
-      <section className="service-style-three">
+      <section className="service-style-three" style={{ marginTop: "100px" }}>
         <div className="auto-container">
           <div className="sec-title centred light">
             <span className="sub-title">{t("countries")}</span>

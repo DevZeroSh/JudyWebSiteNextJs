@@ -1,9 +1,10 @@
 import "@/node_modules/react-modal-video/css/modal-video.css";
-import 'leaflet/dist/leaflet.css';
+import "leaflet/dist/leaflet.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
-import '@/public/assets/css/style.css';
+import "@/public/assets/css/style.css";
+import "@/public/assets/css/custom.css";
 
 import { urbanist, mulish, dM_Sans } from "@/lib/font";
 import { getMessages } from "next-intl/server";

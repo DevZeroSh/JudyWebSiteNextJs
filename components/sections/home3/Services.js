@@ -5,13 +5,10 @@ import { useTranslations, useLocale } from "next-intl";
 
 export default function Services() {
   const { data: services, isError } = useGetAllServicesQuery();
-console.log(services);
+  console.log(services);
 
   const t = useTranslations("servicesPage");
-
   const locale = useLocale();
-  if (isError) return <p>{t("errorLoading")}</p>;
-  if (!services) return <p>{t("loading")}</p>;
 
   return (
     <>
@@ -28,7 +25,7 @@ console.log(services);
           </div>
 
           <div className="row clearfix">
-            {services.data.slice(0, 6).map((service, index) => (
+            {services?.data?.slice(0, 6).map((service, index) => (
               <div
                 key={service._id}
                 className="col-lg-4 col-md-6 col-sm-12 chooseus-block"
@@ -44,7 +41,7 @@ console.log(services);
                     <span className="count-text">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <img
+                    {/* <img
                       src={service.photo}
                       alt={locale === "ar" ? service.nameAR : service.nameEn}
                       style={{
@@ -52,7 +49,7 @@ console.log(services);
                         marginTop: "10px",
                         borderRadius: "8px",
                       }}
-                    />
+                    /> */}
                     <h3>{locale === "ar" ? service.nameAR : service.nameEn}</h3>
                     <p>
                       {locale === "ar"

@@ -1,67 +1,42 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import baseURL,{BlogEndPoint} from "@/api/GlobalData";
+import baseURL, { BlogEndPoint } from "@/api/GlobalData";
 
 export const BlogApi = createApi({
   reducerPath: "blogApi",
   baseQuery: fetchBaseQuery({
     baseUrl: baseURL,
-    prepareHeaders: (headers) => {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2ODUzZGY5NTY4MjdlY2EwYjE4ZWFkMTciLCJpYXQiOjE3NTA5MjM0NjgsImV4cCI6MTc1ODY5OTQ2OH0.dXu5YFTpvFDeXTeFLJcmLFyONf3H7asAI7ZfJPUtmUU";
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-      }
-      return headers;
-    },
   }),
   tagTypes: ["blog"],
   endpoints: (builder) => ({
     // ✅ Get all blogs
     getAllBlogs: builder.query({
-      query: () => `${BlogEndPoint}`,
+      query: ({ keyword = "", page = 1, limit = 10 } = {}) => {
+        const params = new URLSearchParams();
+
+        if (keyword) params.append("keyword", keyword);
+        params.append("page", page.toString());
+        params.append("limit", limit.toString());
+
+        return `${BlogEndPoint}?${params.toString()}`;
+      },
       providesTags: ["blog"],
     }),
 
     // ✅ Get one blog by ID
-    getOneBlog: builder.query({
+    getOneBlogById: builder.query({
       query: (id) => `${BlogEndPoint}/${id}`,
       providesTags: ["blog"],
     }),
-
-    // ✅ Post new blog
-    postBlog: builder.mutation({
-      query: (formData) => ({
-        url: `${BlogEndPoint}`,
-        method: "POST",
-        body: formData,
-      }),
-      invalidatesTags: ["blog"],
-    }),
-
-    // ✅ Update existing blog
-    updateBlog: builder.mutation({
-      query: ({ id, formData }) => ({
-        url: `${BlogEndPoint}/${id}`,
-        method: "PUT",
-        body: formData,
-      }),
-      invalidatesTags: ["blog"],
-    }),
-
-    // ✅ Delete a blog
-    deleteBlog: builder.mutation({
-      query: (id) => ({
-        url: `${BlogEndPoint}/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["blog"],
+    // ✅ Get one blog by Category Id
+    getBlogsByCategory: builder.query({
+      query: (slug) => `${BlogEndPoint}/blog_categories/${slug}`,
+      providesTags: ["blog"],
     }),
   }),
 });
 
 export const {
   useGetAllBlogsQuery,
-  useGetOneBlogQuery,
-  usePostBlogMutation,
-  useUpdateBlogMutation,
-  useDeleteBlogMutation,
+  useGetOneBlogByIdQuery,
+  useGetBlogsByCategoryQuery,
 } = BlogApi;

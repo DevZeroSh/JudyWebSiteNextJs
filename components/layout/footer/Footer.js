@@ -2,12 +2,12 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 export default function Footer() {
-  const  t  = useTranslations("footer");
+  const t = useTranslations("footer");
 
   return (
     <>
       {/* footer-style-three */}
-      <section className="footer-style-three">
+      <section className="footer-style-three" style={{ marginTop: "100px" }}>
         <div className="widget-section">
           <div className="auto-container">
             <div className="row clearfix">
@@ -25,7 +25,10 @@ export default function Footer() {
                   </h5>
                   <div className="footer-logo">
                     <Link href="/index-3">
-<img src="/assets/images/judywhite.webp" alt="Judy White" />
+                      <img
+                        src="/assets/images/judywhite.webp"
+                        alt="Judy White"
+                      />
                     </Link>
                   </div>
                 </div>
