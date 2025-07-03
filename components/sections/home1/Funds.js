@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export default function Funds() {
-  const t = useTranslations("fundsPage");
+  const { t } = useTranslations();
 
   return (
     <>
@@ -22,7 +22,10 @@ export default function Funds() {
             />
             <div className="row clearfix">
               {[1, 2, 3].map((num) => (
-                <div key={num} className="col-lg-4 col-md-6 col-sm-12 working-block">
+                <div
+                  key={num}
+                  className="col-lg-4 col-md-6 col-sm-12 working-block"
+                >
                   <div className="working-block-one">
                     <div className="inner-box">
                       <div className="image-box">
@@ -47,7 +50,8 @@ export default function Funds() {
                         </h3>
                         <p>{t(`block${num}.description`)}</p>
                         <h2>
-                          {t(`block${num}.number`)} <span>{t(`block${num}.suffix`)}</span>
+                          {t(`block${num}.number`)}{" "}
+                          <span>{t(`block${num}.suffix`)}</span>
                         </h2>
                       </div>
                     </div>

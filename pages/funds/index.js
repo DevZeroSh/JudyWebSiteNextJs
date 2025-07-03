@@ -2,14 +2,17 @@
 import Layout from "@/components/layout/Layout";
 
 import Funds from "@/components/sections/home1/Funds";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
-    const t = useTranslations();
+  const { t, i18n } = useTranslation();
 
   return (
     <>
-      <Layout  breadcrumbTitle={t("InvestmentFunds")} image={'/assets/images/funds.jpg'}>
+      <Layout
+        breadcrumbTitle={t("InvestmentFunds")}
+        image={"/assets/images/funds.jpg"}
+      >
         <Funds />
       </Layout>
     </>

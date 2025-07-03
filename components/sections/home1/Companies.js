@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
 import { useGetAllCompaniesQuery } from "@/RTK/Api/Companies/CompaniesApi";
+import { useTranslation } from "react-i18next";
 
 export default function Companies() {
   const { data, isError, isLoading } = useGetAllCompaniesQuery();
-  const locale = useLocale();
-  const t = useTranslations("companiesPage");
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
 
   if (isLoading) return <p>{t("loading")}</p>;
   if (isError || !data?.data) return <p>{t("error")}</p>;
@@ -28,20 +28,25 @@ export default function Companies() {
           </div>
           <div className="services-grid">
             {data.data.slice(0, 6).map((company) => (
-              <div key={company._id} className="service-block-one block-one max-h-30">
+              <div
+                key={company._id}
+                className="service-block-one block-one max-h-30"
+              >
                 <div className="inner-box">
                   <div className="icon-box">
                     <div className="icon">
                       <img
                         src={company.photo}
-                        alt={locale === "ar" ? company.nameAR : company.nameEn}
+                        alt={
+                          currentLang === "ar" ? company.nameAR : company.nameEn
+                        }
                       />
                     </div>
                   </div>
                   <h3>
                     <Link href={`/company-detailes/${company._id}`}>
                       {company.title}
-                      {locale === "ar" ? company.nameAR : company.nameEn}
+                      {currentLang === "ar" ? company.nameAR : company.nameEn}
                     </Link>
                   </h3>
                   <div className="link">
@@ -50,7 +55,7 @@ export default function Companies() {
                     </Link>
                   </div>
                   <p>
-                    {locale === "ar"
+                    {currentLang === "ar"
                       ? company.cardDescriptionAR
                       : company.cardDescriptionEN}
                   </p>
