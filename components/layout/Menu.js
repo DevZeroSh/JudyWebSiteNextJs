@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "react-i18next";
 
 export default function Menu() {
   const pathname = usePathname();
   const supportedLocales = ["en", "ar"];
   const firstSegment = pathname.split("/")[1];
   const locale = supportedLocales.includes(firstSegment) ? firstSegment : "en";
-  const t = useTranslations();
+  const { t } = useTranslation();
 
   return (
     <>

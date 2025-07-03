@@ -1,8 +1,9 @@
-'use client'
+"use client";
 
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { useTranslations } from "next-intl"
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useTranslation } from "react-i18next";
+import { sliderAboutUs } from "@/StaticData/Home";
 
 const swiperOptions = {
   modules: [Autoplay, Pagination, Navigation],
@@ -14,11 +15,11 @@ const swiperOptions = {
   },
   loop: true,
   navigation: {
-    nextEl: '.h1n',
-    prevEl: '.h1p',
+    nextEl: ".h1n",
+    prevEl: ".h1p",
   },
   pagination: {
-    el: '.swiper-pagination',
+    el: ".swiper-pagination",
     clickable: true,
   },
   breakpoints: {
@@ -28,39 +29,31 @@ const swiperOptions = {
     991: { slidesPerView: 1 },
     1199: { slidesPerView: 1 },
     1350: { slidesPerView: 1 },
-  }
-}
+  },
+};
 
 export default function TestimonialSlider1() {
-  const t = useTranslations('testimonialSlider')
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
 
   return (
     <Swiper {...swiperOptions} className="theme_carousel owl-theme">
-      <SwiperSlide className="slide">
-        <div className="inner-box">
-          <div className="icon-box">
-            <div className="icon">
-              <i className="flaticon-knowledge" />
+      {sliderAboutUs.map((slide, idx) => (
+        <SwiperSlide className="slide" key={idx}>
+          <div className="inner-box">
+            <div className="icon-box">
+              <div className="icon">
+                <i className="flaticon-knowledge" />
+              </div>
+              <span className="count-text">
+                {String(idx + 1).padStart(2, "0")}
+              </span>
             </div>
-            <span className="count-text">01</span>
+            <h3>{slide.title[lang]}</h3>
+            <p>{slide.content[lang]}</p>
           </div>
-          <h3>{t('slide1.title')}</h3>
-          <p>{t('slide1.text')}</p>
-        </div>
-      </SwiperSlide>
-
-      <SwiperSlide className="slide">
-        <div className="inner-box">
-          <div className="icon-box">
-            <div className="icon">
-              <i className="flaticon-knowledge" />
-            </div>
-            <span className="count-text">02</span>
-          </div>
-          <h3>{t('slide2.title')}</h3>
-          <p>{t('slide2.text')}</p>
-        </div>
-      </SwiperSlide>
+        </SwiperSlide>
+      ))}
     </Swiper>
-  )
+  );
 }

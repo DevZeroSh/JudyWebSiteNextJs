@@ -1,14 +1,14 @@
 "use client";
 
 import { useGetAllServicesQuery } from "@/RTK/Api/Service/ServiceApi";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslation } from "react-i18next";
 
 export default function Services() {
   const { data: services, isError } = useGetAllServicesQuery();
   console.log(services);
 
-  const t = useTranslations("servicesPage");
-  const locale = useLocale();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
 
   return (
     <>
@@ -20,8 +20,8 @@ export default function Services() {
         />
         <div className="auto-container">
           <div className="sec-title centred">
-            <span className="sub-title">{t("subtitle")}</span>
-            <h2>{t("title")}</h2>
+            <span className="sub-title">{t("Services")}</span>
+            <h2>{t("We Can offer everything")}</h2>
           </div>
 
           <div className="row clearfix">
@@ -41,18 +41,11 @@ export default function Services() {
                     <span className="count-text">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    {/* <img
-                      src={service.photo}
-                      alt={locale === "ar" ? service.nameAR : service.nameEn}
-                      style={{
-                        maxWidth: "4em",
-                        marginTop: "10px",
-                        borderRadius: "8px",
-                      }}
-                    /> */}
-                    <h3>{locale === "ar" ? service.nameAR : service.nameEn}</h3>
+                    <h3>
+                      {currentLang === "ar" ? service.nameAR : service.nameEn}
+                    </h3>
                     <p>
-                      {locale === "ar"
+                      {currentLang === "ar"
                         ? service.cardDescriptionAR
                         : service.cardDescriptionEN}
                     </p>

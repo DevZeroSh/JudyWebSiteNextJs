@@ -3,9 +3,7 @@
 import Link from "next/link";
 import Menu from "../Menu";
 import MobileMenu from "../MobileMenu";
-import { useEffect } from "react";
-import { useTranslations } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export default function Header({
   scroll,
@@ -15,60 +13,14 @@ export default function Header({
   handlePopup,
   handleSidebar,
 }) {
-  const t = useTranslations();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const supportedLocales = ["en", "ar"];
-
-  const pathSegments = pathname.split("/").filter(Boolean);
-
-  const currentLang = supportedLocales.includes(pathSegments[0])
-    ? pathSegments[0]
-    : "en";
-  const handleLanguageChange = (lang) => {
-    let cleanPath = pathname;
-
-    supportedLocales.forEach((locale) => {
-      if (cleanPath.startsWith(`/${locale}/`)) {
-        cleanPath = cleanPath.replace(`/${locale}`, "");
-      } else if (cleanPath === `/${locale}`) {
-        cleanPath = "/";
-      }
-    });
-
-    let newPath;
-
-    if (lang === "ar") {
-      newPath = cleanPath === "/" ? `/${lang}` : `/${lang}${cleanPath}`;
-    } else {
-      newPath = cleanPath === "" ? "/" : cleanPath;
-    }
-
-    newPath = newPath.replace(/\/+/g, "/");
-
-    router.push(newPath);
-
-    const root = document.documentElement;
-    if (lang === "ar") {
-      root.classList.add("rtl");
-      root.setAttribute("dir", "rtl");
-    } else {
-      root.classList.remove("rtl");
-      root.setAttribute("dir", "ltr");
-    }
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    const dir = lng === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = dir;
+    document.documentElement.lang = lng;
   };
-
-  useEffect(() => {
-    const root = document.documentElement;
-    if (currentLang === "ar") {
-      root.classList.add("rtl");
-      root.setAttribute("dir", "rtl");
-    } else {
-      root.classList.remove("rtl");
-      root.setAttribute("dir", "ltr");
-    }
-  }, [pathname]);
 
   return (
     <header
@@ -77,7 +29,7 @@ export default function Header({
       }`}
     >
       {/* header-lower */}
-      <div className="header-lower" style={{height:'4.7em'}}>
+      <div className="header-lower" style={{ height: "4.7em" }}>
         <div className="outer-container">
           <div className="outer-box">
             <div className="menu-area">
@@ -110,10 +62,11 @@ export default function Header({
                   <select
                     className="selectmenu"
                     value={currentLang}
-                    onChange={(e) => handleLanguageChange(e.target.value)}
+                    onChange={(e) => changeLanguage(e.target.value)}
                   >
-                    <option value="en">{t("selectEn")}</option>
-                    <option value="ar">{t("selectAr")}</option>
+                    <option value="en">{t("English")}</option>
+                    <option value="ar">{t("Arabic")}</option>
+                    <option value="tr">{t("Turkish")}</option>
                   </select>
                 </div>
               </div>
@@ -160,10 +113,11 @@ export default function Header({
                     <select
                       className="selectmenu"
                       value={currentLang}
-                      onChange={(e) => handleLanguageChange(e.target.value)}
+                      onChange={(e) => changeLanguage(e.target.value)}
                     >
-                      <option value="en">{t("selectEn")}</option>
-                      <option value="ar">{t("selectAr")}</option>
+                      <option value="en">{t("English")}</option>
+                      <option value="ar">{t("Arabic")}</option>
+                      <option value="tr">{t("Turkish")}</option>
                     </select>
                   </div>
                 </div>
@@ -174,11 +128,11 @@ export default function Header({
       </div>
 
       {/* Mobile Menu */}
-      <MobileMenu
+      {/* <MobileMenu
         handleMobileMenu={handleMobileMenu}
         handleSidebar={handleSidebar}
         isSidebar={isSidebar}
-      />
+      /> */}
     </header>
   );
 }

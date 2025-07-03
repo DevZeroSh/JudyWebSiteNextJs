@@ -2,7 +2,7 @@
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "react-i18next";
 
 const swiperOptions = {
   modules: [Autoplay, Pagination, Navigation],
@@ -32,7 +32,7 @@ const swiperOptions = {
 };
 
 export default function TestimonialSlider02() {
-  const t = useTranslations("countriesPage.slider");
+  const { t } = useTranslation();
 
   const slides = [
     {

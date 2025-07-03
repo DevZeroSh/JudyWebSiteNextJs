@@ -22,6 +22,13 @@
 .custom-container .content-box {
   max-width: 1000px !important;
 }
+
+.banner-carousel .content-box .lower-box .text {
+  max-width: 800px !important;
+  font-family: var(--urbanist);
+  font-weight: 600;
+  padding-top: 22px;
+}
 .banner-carousel .swiper-slide-active .image-layer {
   transform: scale(1.1); /* slight zoom-in */
 }
@@ -43,8 +50,8 @@
   background: white !important;
 }
 .banner-carousel .slide-item:before {
-  background-color: #001b1fd4;
-  opacity: 1;
+  background-color: #001b1fd4 !important;
+  opacity: 1 !important;
 }
 
 /* Services */
@@ -53,7 +60,7 @@
   display: block;
   font-size: 24px;
   line-height: 34px;
-  padding-top: 48px;
+  padding-top: 48px !important;
   margin-bottom: 19px;
 }
 .chooseus-block-three .inner-box h3:before {

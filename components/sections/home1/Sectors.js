@@ -1,129 +1,84 @@
-import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "react-i18next";
+import { whyChooseUs } from "@/StaticData/Home";
 
 export default function Sectors() {
-    const t = useTranslations("sectorsPage");
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
 
-    return (
-        <>
-        {/* chooseus-section */}
-        <section className="chooseus-section sec-pad">
-          <span className="big-text">
-            {t("why")} <br />
-            {t("chooseUs")}
-          </span>
-          <div className="auto-container">
-            <div className="sec-title centred">
-              <span className="sub-title">{t("sectors")}</span>
-              <h2>{t("title")}</h2>
+  return (
+    <>
+      <section className="chooseus-section sec-pad">
+        <span className="big-text">
+          {lang === "ar" ? "لماذا" : "Why"} <br />
+          {lang === "ar" ? "اخترنا" : "Choose Us"}
+        </span>
+        <div className="auto-container">
+          <div className="sec-title centred">
+            <span className="sub-title">
+              {lang === "ar" ? "لماذا تختارنا" : "Why Choose Us"}
+            </span>
+            <h2>
+              {lang === "ar"
+                ? "أسباب اختيار جودي"
+                : "Reasons for Choosing Judy"}
+            </h2>
+          </div>
+          <div className="row align-items-center">
+            <div className="col-lg-4 col-md-6 col-sm-12 left-column">
+              <div className="inner-content">
+                {whyChooseUs.slice(0, 3).map((item, index) => (
+                  <div className="chooseus-block-one" key={item.key}>
+                    <div className="inner-box">
+                      <div className="icon-box">
+                        <i className={item.icon} />
+                      </div>
+                      <div className="static-content">
+                        <h3>{item.title[lang]}</h3>
+                        <p>{item.brief[lang]}</p>
+                      </div>
+                      <div className="overlay-content">
+                        <p>{item.full[lang]}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="row align-items-center">
-              <div className="col-lg-4 col-md-6 col-sm-12 left-column">
-                <div className="inner-content">
-                  <div className="chooseus-block-one">
-                    <div className="inner-box">
-                      <div className="icon-box">
-                        <i className="flaticon-knowledge" />
-                      </div>
-                      <div className="static-content">
-                        <h3>{t("knowledge.title")}</h3>
-                        <p>{t("knowledge.brief")}</p>
-                      </div>
-                      <div className="overlay-content">
-                        <p>{t("knowledge.full")}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="chooseus-block-one">
-                    <div className="inner-box">
-                      <div className="icon-box">
-                        <i className="flaticon-united" />
-                      </div>
-                      <div className="static-content">
-                        <h3>{t("team.title")}</h3>
-                        <p>{t("team.brief")}</p>
-                      </div>
-                      <div className="overlay-content">
-                        <p>{t("team.full")}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="chooseus-block-one">
-                    <div className="inner-box">
-                      <div className="icon-box">
-                        <i className="flaticon-clock" />
-                      </div>
-                      <div className="static-content">
-                        <h3>{t("time.title")}</h3>
-                        <p>{t("time.brief")}</p>
-                      </div>
-                      <div className="overlay-content">
-                        <p>{t("time.full")}</p>
-                      </div>
-                    </div>
-                  </div>
+
+            <div className="col-lg-4 col-md-6 col-sm-12 image-column">
+              <div className="image-box">
+                <figure className="image">
+                  <img src="/assets/images/sectors.jpg" alt="" />
+                </figure>
+                <div className="image-shape">
+                  <img src="/assets/images/shape/shape-8.png" alt="" />
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 col-sm-12 image-column">
-                <div className="image-box">
-                  <figure className="image">
-                    <img src="assets/images/sectors.jpg" alt="" />
-                  </figure>
-                  <div className="image-shape">
-                    <img src="assets/images/shape/shape-8.png" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-12 right-column">
-                <div className="inner-content">
-                  <div className="chooseus-block-one">
+            </div>
+
+            <div className="col-lg-4 col-md-6 col-sm-12 right-column">
+              <div className="inner-content">
+                {whyChooseUs.slice(3, 6).map((item, index) => (
+                  <div className="chooseus-block-one" key={item.key}>
                     <div className="inner-box">
                       <div className="icon-box">
-                        <i className="flaticon-risk-management" />
+                        <i className={item.icon} />
                       </div>
                       <div className="static-content">
-                        <h3>{t("risk.title")}</h3>
-                        <p>{t("risk.brief")}</p>
+                        <h3>{item.title[lang]}</h3>
+                        <p>{item.brief[lang]}</p>
                       </div>
                       <div className="overlay-content">
-                        <p>{t("risk.full")}</p>
+                        <p>{item.full[lang]}</p>
                       </div>
                     </div>
                   </div>
-                  <div className="chooseus-block-one">
-                    <div className="inner-box">
-                      <div className="icon-box">
-                        <i className="flaticon-monitor" />
-                      </div>
-                      <div className="static-content">
-                        <h3>{t("tech.title")}</h3>
-                        <p>{t("tech.brief")}</p>
-                      </div>
-                      <div className="overlay-content">
-                        <p>{t("tech.full")}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="chooseus-block-one">
-                    <div className="inner-box">
-                      <div className="icon-box">
-                        <i className="flaticon-advice" />
-                      </div>
-                      <div className="static-content">
-                        <h3>{t("advice.title")}</h3>
-                        <p>{t("advice.brief")}</p>
-                      </div>
-                      <div className="overlay-content">
-                        <p>{t("advice.full")}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
-        </section>
-        {/* chooseus-section end */}
-        </>
-    );
+        </div>
+      </section>
+    </>
+  );
 }

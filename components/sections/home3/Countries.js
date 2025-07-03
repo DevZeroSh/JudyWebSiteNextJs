@@ -1,8 +1,8 @@
 import TestimonialSlider02 from "@/components/slider/TestimonialSlider02";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "react-i18next";
 
 export default function Countries() {
-  const t = useTranslations("countriesPage");
+  const { t } = useTranslation();
 
   return (
     <>

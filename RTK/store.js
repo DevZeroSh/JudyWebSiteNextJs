@@ -4,8 +4,8 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { ServiceApi } from "./Api/Service/ServiceApi";
 import { CompanyApi } from "./Api/Companies/CompaniesApi";
 import { TeamApi } from "./Api/employees/EmployeesApi";
-import { BlogApi } from "./Api/Blog/BlogApi"; 
-export const store = configureStore({
+import { BlogApi } from "./Api/Blog/BlogApi";
+const store = configureStore({
   reducer: {
     [ServiceApi.reducerPath]: ServiceApi.reducer,
     [CompanyApi.reducerPath]: CompanyApi.reducer,
@@ -22,3 +22,5 @@ export const store = configureStore({
 });
 
 setupListeners(store.dispatch);
+
+export default store;

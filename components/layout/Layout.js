@@ -5,7 +5,12 @@ import Breadcrumb from "./Breadcrumb";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 
-export default function Layout({ breadcrumbTitle,image, children, wrapperCls }) {
+export default function Layout({
+  breadcrumbTitle,
+  image,
+  children,
+  wrapperCls,
+}) {
   const [scroll, setScroll] = useState(0);
   // Mobile Menu
   const [isMobileMenu, setMobileMenu] = useState(false);
@@ -47,7 +52,9 @@ export default function Layout({ breadcrumbTitle,image, children, wrapperCls }) 
           handleSidebar={handleSidebar}
         />
 
-        {breadcrumbTitle && <Breadcrumb breadcrumbTitle={breadcrumbTitle} img={image} />}
+        {breadcrumbTitle && (
+          <Breadcrumb breadcrumbTitle={breadcrumbTitle} img={image} />
+        )}
 
         {children}
         <Footer />

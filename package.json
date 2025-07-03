@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
+    "bootstrap": "^5.3.7",
     "bootstrap-touchspin": "^4.7.3",
-    "i18next": "^25.2.1",
+    "i18next": "^25.3.0",
     "i18next-resources-to-backend": "^1.2.1",
     "isotope-layout": "^3.0.6",
     "leaflet": "^1.9.4",

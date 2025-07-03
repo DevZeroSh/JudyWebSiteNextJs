@@ -1,12 +1,12 @@
 "use client";
 import { useGetAllBlogsQuery } from "@/RTK/Api/Blog/BlogApi";
-import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import BlogImg from "../../public/assets/images/news/news-1.jpg";
 import BlogImgSmall from "../../public/assets/images/news/post-3.jpg";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { formatDate } from "@/GlobalHooks/GlobalHooks";
+import { useTranslation } from "react-i18next";
 
 const swiperOptions = {
   modules: [Autoplay, Pagination, Navigation],
@@ -63,8 +63,8 @@ export default function NewsSlider() {
     isError,
     isLoading,
   } = useGetAllBlogsQuery({ limit: 10 });
-  const t = useTranslations();
-  const locale = useLocale();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
   console.log("latestBlogs", latestBlogs);
   const slideChunks = [
     latestBlogs?.data?.slice?.(0, 5) || [],
@@ -92,7 +92,7 @@ export default function NewsSlider() {
                     <div className="inner-box">
                       <div className="upper-box">
                         <span className="category">
-                          {blog?.category?.name?.[locale] ?? "General"}
+                          {blog?.category?.name?.[currentLang] ?? "General"}
                         </span>
                         <ul className="post-info clearfix">
                           <li>
@@ -108,7 +108,7 @@ export default function NewsSlider() {
                           <Link href={`/blog/${blog._id}`}>
                             <img
                               src={blog.photo || BlogImg.src}
-                              alt={blog.title?.[locale] ?? "Blog"}
+                              alt={blog.title?.[currentLang] ?? "Blog"}
                             />
                           </Link>
                         </figure>
@@ -125,7 +125,7 @@ export default function NewsSlider() {
                       <div className="lower-box">
                         <h3>
                           <Link href={`/blog/${blog._id}`}>
-                            {blog.title?.[locale] ?? blog.title?.en}
+                            {blog.title?.[currentLang] ?? blog.title?.en}
                           </Link>
                         </h3>
                         <div className="link">
@@ -148,16 +148,16 @@ export default function NewsSlider() {
                         <Link href={`/blog/${blog._id}`}>
                           <img
                             src={blog.photo || BlogImgSmall.src}
-                            alt={blog.title?.[locale] ?? "Blog"}
+                            alt={blog.title?.[currentLang] ?? "Blog"}
                           />
                         </Link>
                       </figure>
                       <span className="category">
-                        {blog?.category?.name?.[locale] ?? "Category"}
+                        {blog?.category?.name?.[currentLang] ?? "Category"}
                       </span>
                       <h4>
                         <Link href={`/blog/${blog._id}`}>
-                          {blog.title?.[locale] ?? blog.title?.en}
+                          {blog.title?.[currentLang] ?? blog.title?.en}
                         </Link>
                       </h4>
                     </div>
