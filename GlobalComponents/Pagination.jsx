@@ -1,8 +1,9 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
-  const t = useTranslations();
+  const { t } = useTranslation();
   const goToPage = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);

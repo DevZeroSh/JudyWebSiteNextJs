@@ -1,15 +1,15 @@
 "use client";
 import Layout from "@/components/layout/Layout";
 import { formatDate, truncateText } from "@/GlobalHooks/GlobalHooks";
-import {
-  useGetAllBlogsQuery,
-  useGetBlogsByCategoryQuery,
-} from "@/RTK/Api/Blog/BlogApi";
-import { useTranslations, useLocale } from "next-intl";
-import DefaultImg from "../../../public/assets/images/news/news-5.jpg";
+import DefaultImg from "../../public/assets/images/news/news-5.jpg";
 import Link from "next/link";
 import Pagination from "@/GlobalComponents/Pagination";
 import { useState } from "react";
+import {
+  useGetAllBlogsQuery,
+  useGetBlogsByCategoryQuery,
+} from "../../RTK/Api/Blog/BlogApi";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,8 +20,8 @@ export default function Home() {
   } = useGetAllBlogsQuery({ page: currentPage });
   const { data: categories } = useGetBlogsByCategoryQuery();
   console.log("categories", categories);
-  const t = useTranslations();
-  const locale = useLocale();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
   const totalPages = blogs?.pagination?.totalPages;
   console.log("blogs", blogs);
   return (
@@ -49,7 +49,7 @@ export default function Home() {
                                 />
                               </Link>
                             </figure>
-                            <h6>{blog.title?.[locale]}</h6>
+                            <h6>{blog.title?.[currentLang]}</h6>
                           </div>
                           <div className="content-box">
                             <ul className="post-info clearfix">
@@ -64,13 +64,13 @@ export default function Home() {
                             </ul>
                             <h3>
                               <Link href="/blog-details">
-                                {blog.title?.[locale]}
+                                {blog.title?.[currentLang]}
                               </Link>
                             </h3>
                             <p
                               dangerouslySetInnerHTML={{
                                 __html: truncateText(
-                                  blog.content?.[locale],
+                                  blog.content?.[currentLang],
                                   200
                                 ),
                               }}
